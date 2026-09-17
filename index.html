@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danny Harrington — Scalable Systems & Operations</title>
+  <meta name="description" content="Danny Harrington helps small teams build scalable systems, resilient workflows, and deterministic operations pipelines.">
+
+  <!-- Google Fonts: Fraunces, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheets (Cache-busted) -->
+  <link rel="stylesheet" href="css/variables.css?v=emerald1">
+  <link rel="stylesheet" href="css/base.css?v=emerald1">
+  <link rel="stylesheet" href="css/components.css?v=emerald1">
+</head>
+<body>
+
+  <!-- ========================================================================
+       1. Navigation Bar (Sticky Hairline)
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container nav-container">
+      <div class="brand-block">
+        <a href="#" class="brand-name">Danny Harrington</a>
+        <div class="status-pill" title="Current Availability Status">
+          <span class="status-dot"></span>
+          <span>Available for projects</span>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#playbook" class="nav-link">Playbook</a></li>
+          <li><a href="#systems" class="nav-link">Systems</a></li>
+          <li><a href="#tooling" class="nav-link">Tooling</a></li>
+          <li><a href="#consulting" class="nav-link">Consulting</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <button id="theme-toggle-btn" class="theme-switcher-btn" title="Click to test alternative palettes">
+              🎨 Look: Alabaster Cobalt
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       2. Hero Section
+       ======================================================================== -->
+  <section class="hero-section">
+    <div class="container hero-layout">
+      
+      <!-- Styled Editorial Avatar Badge -->
+      <div class="hero-badge-row">
+        <div class="avatar-badge">
+          <div class="avatar-icon-wrap" aria-hidden="true">⚡</div>
+          <span class="avatar-label">Danny Harrington // Systems & Automation</span>
+        </div>
+      </div>
+
+      <h1 class="hero-title">
+        I help small teams build <em>scalable systems</em>.
+      </h1>
+
+      <p class="hero-lead">
+        I design resilient workflows, deterministic safety valves, and production-grade automations for growing businesses. Turning manual operational chaos into systems you can trust.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#systems" class="btn btn-primary">
+          <span>View Production Systems</span>
+          <span aria-hidden="true">↓</span>
+        </a>
+        <button data-cal-namespace="30min" data-cal-link="daniel-harrington/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-secondary">
+          <span>Book a 30-Min Call</span>
+          <span aria-hidden="true">↗</span>
+        </button>
+      </div>
+
+      <!-- Operational Reliability Benchmarks -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-value">0%</div>
+          <div class="metric-label">Silent Failures</div>
+          <div class="metric-note">100% exceptions caught in dead-letter queues</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">&lt; 400ms</div>
+          <div class="metric-label">Decision Latency</div>
+          <div class="metric-note">Deterministic rule gate evaluation</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">100%</div>
+          <div class="metric-label">Idempotent</div>
+          <div class="metric-note">Zero duplicate transaction risk</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">Safe-First</div>
+          <div class="metric-label">Human-in-the-Loop</div>
+          <div class="metric-note">Deterministic threshold routing</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       3. The Operations Playbook (4 Core Disciplines)
+       ======================================================================== -->
+  <section id="playbook" class="reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">Methodology</div>
+      <h2>The Operations Playbook</h2>
+      <p>
+        AI agents are only as reliable as the deterministic rails surrounding them. Here are the four operational principles I build into every production system:
+      </p>
+
+      <div class="playbook-grid">
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">01 // INTEGRITY</div>
+            <h3 class="card-heading">Data Quality Gates & Safety Valves</h3>
+            <p class="card-body">
+              Input guards, variance tolerances, and automatic human-in-the-loop escalation. An automated system should never guess with customer money or critical data.
+            </p>
+          </div>
+          <div class="card-principle">Rule: Fail safely to human review.</div>
+        </div>
+
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">02 // RESILIENCE</div>
+            <h3 class="card-heading">Idempotency & Webhook Safeguards</h3>
+            <p class="card-body">
+              Ensuring network retries and re-delivered webhooks execute safely without duplicate billing, phantom records, or split-state race conditions.
+            </p>
+          </div>
+          <div class="card-principle">Rule: Same input = identical safe outcome.</div>
+        </div>
+
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">03 // RELIABILITY</div>
+            <h3 class="card-heading">Error Handling & Dead-Letter Queues</h3>
+            <p class="card-body">
+              Graceful degradation, exponential backoff on flaky upstream APIs, and dedicated dead-letter queues (DLQs) so no payload is ever lost in the dark.
+            </p>
+          </div>
+          <div class="card-principle">Rule: Zero unhandled silent drops.</div>
+        </div>
+
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">04 // VISIBILITY</div>
+            <h3 class="card-heading">Observability & Reasoning Audit Trails</h3>
+            <p class="card-body">
+              Structured JSON logging that captures raw inputs, agent reasoning steps, and downstream responses. Every automated decision is auditable after the fact.
+            </p>
+          </div>
+          <div class="card-principle">Rule: If you can't explain it, don't run it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       4. Production Systems & Case Studies
+       ======================================================================== -->
+  <section id="systems" class="reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">Case Studies</div>
+      <h2>Production Systems in Action</h2>
+      <p>
+        Real architectural patterns solving tangible operational problems with verifiable code.
+      </p>
+
+      <div class="case-studies-list">
+        
+        <!-- Case Study 1: tem Engine Ops Wholesale Energy Gate -->
+        <article class="case-study-card">
+          <div class="case-study-header">
+            <div>
+              <span class="section-tag">EnergyTech & FinTech</span>
+              <h3 class="case-study-title">Wholesale Energy Invoice Gate & Safety Valve</h3>
+            </div>
+            <div class="case-study-meta">
+              <span class="tech-tag">TypeScript</span>
+              <span class="tech-tag">AI Agent Parsing</span>
+              <span class="tech-tag">Safety Valves</span>
+            </div>
+          </div>
+
+          <!-- Dual Narrative: Business Problem & Technical Solution -->
+          <div class="case-study-narrative">
+            <div class="narrative-block">
+              <div class="narrative-label">The Business Problem</div>
+              <p class="narrative-text">
+                Energy extraction agents parse thousands of wholesale electricity invoices across solar, wind, and hydro generators. High-value invoices or tariff rounding discrepancies risked being paid without review, exposing the balance sheet to anomalous billing.
+              </p>
+            </div>
+            <div class="narrative-block">
+              <div class="narrative-label">The Technical Solution</div>
+              <p class="narrative-text">
+                Engineered a deterministic 4-stage <strong>G-F-C-F gate</strong> (Guard, Flag, Calculate, Fallback). Evaluates data quality, flags unvetted new partners over $10k, computes tiered percentage variances, and routes to auto-approval, agent re-scan, or human review.
+              </p>
+            </div>
+          </div>
+
+          <!-- Semantic System Flow Diagram -->
+          <div class="system-diagram">
+            <div class="diagram-title">// Operational Flow: Guard-Flag-Calculate-Fallback (G-F-C-F)</div>
+            <div class="diagram-nodes">
+              <div class="diagram-node">
+                <div class="node-title">1. Raw Invoice</div>
+                <div class="node-sub">AI Agent Extraction</div>
+              </div>
+              <span class="diagram-arrow">→</span>
+              <div class="diagram-node">
+                <div class="node-title">2. Data Guard</div>
+                <div class="node-sub">Missing/Neg Amount Check</div>
+              </div>
+              <span class="diagram-arrow">→</span>
+              <div class="diagram-node">
+                <div class="node-title">3. Partner Flag</div>
+                <div class="node-sub">New Partner &gt; $10k</div>
+              </div>
+              <span class="diagram-arrow">→</span>
+              <div class="diagram-node active">
+                <div class="node-title">4. Variance Engine</div>
+                <div class="node-sub">Tiers: &le;$5, &le;2%, &gt;$500</div>
+              </div>
+              <span class="diagram-arrow">→</span>
+              <div class="diagram-node">
+                <div class="node-title">5. Decision Router</div>
+                <div class="node-sub">Auto / Re-scan / Human</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Code Schema Snippet -->
+          <div class="code-container">
+            <div class="code-header">
+              <span>types.ts // Safety Valve Contract</span>
+              <span>TypeScript</span>
+            </div>
+            <pre class="code-body"><code><span class="token-kw">export interface</span> <span class="token-type">InvoiceValidationResult</span> {
+  <span class="token-prop">invoiceId</span>: <span class="token-type">string</span>;
+  <span class="token-prop">status</span>: <span class="token-str">'AUTO_APPROVE'</span> | <span class="token-str">'AGENT_RECHECK'</span> | <span class="token-str">'HUMAN_REVIEW'</span>;
+  <span class="token-prop">reason</span>: <span class="token-type">EvaluationReason</span>;
+  <span class="token-prop">varianceAmount</span>: <span class="token-type">number</span>;
+  <span class="token-prop">evaluatedAt</span>: <span class="token-type">string</span>;
+}
+
+<span class="token-comm">// Deterministic safety default: Any unclassified condition routes to HUMAN_REVIEW</span></code></pre>
+          </div>
+
+          <div class="case-study-footer">
+            <span class="metric-note">Zero silent failures. Auditable evaluation logs.</span>
+            <a href="https://github.com/harringtondanny/tem-practice-problems/tree/main/practice/day-1-safety-valves" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <span>View Source Code on GitHub</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Case Study 2: Idempotent Webhook Pipeline -->
+        <article class="case-study-card">
+          <div class="case-study-header">
+            <div>
+              <span class="section-tag">Infrastructure & Payments</span>
+              <h3 class="case-study-title">Idempotent Webhook Ingestion & Sync Pipeline</h3>
+            </div>
+            <div class="case-study-meta">
+              <span class="tech-tag">n8n</span>
+              <span class="tech-tag">Webhooks</span>
+              <span class="tech-tag">Redis Cache</span>
+            </div>
+          </div>
+
+          <div class="case-study-narrative">
+            <div class="narrative-block">
+              <div class="narrative-label">The Business Problem</div>
+              <p class="narrative-text">
+                When upstream payment processors retry unacknowledged webhooks due to network blips, naive automations trigger duplicate invoices, multiple charges, or conflicting CRM updates.
+              </p>
+            </div>
+            <div class="narrative-block">
+              <div class="narrative-label">The Technical Solution</div>
+              <p class="narrative-text">
+                Engineered an atomic idempotency guard with distributed key caching. Webhook payloads calculate a deterministic hash, check in-flight locks, and return cached acknowledgments without re-triggering side effects.
+              </p>
+            </div>
+          </div>
+
+          <div class="code-container">
+            <div class="code-header">
+              <span>idempotency.ts // Deduplication Guard</span>
+              <span>TypeScript</span>
+            </div>
+            <pre class="code-body"><code><span class="token-kw">export async function</span> <span class="token-type">processWebhookWithIdempotency</span>(event: <span class="token-type">WebhookEvent</span>) {
+  <span class="token-kw">const</span> lockKey = <span class="token-str">`event:${event.id}`</span>;
+  <span class="token-kw">const</span> isDuplicate = <span class="token-kw">await</span> cache.<span class="token-type">checkAndSet</span>(lockKey, <span class="token-str">'PROCESSING'</span>, <span class="token-str">'24h'</span>);
+  
+  <span class="token-kw">if</span> (isDuplicate) {
+    <span class="token-kw">return</span> { <span class="token-prop">status</span>: <span class="token-str">'IGNORED_DUPLICATE'</span>, <span class="token-prop">processed</span>: <span class="token-kw">false</span> };
+  }
+  <span class="token-comm">// Proceed to deterministic downstream execution</span>
+}</code></pre>
+          </div>
+
+          <div class="case-study-footer">
+            <span class="metric-note">100% duplicate charge prevention on flaky network retries.</span>
+            <a href="https://github.com/harringtondanny/tem-practice-problems" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+              <span>View Source Code on GitHub</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       5. Core Tooling Matrix
+       ======================================================================== -->
+  <section id="tooling" class="reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">Stack & Ecosystem</div>
+      <h2>Core Tooling & Systems</h2>
+      <p>
+        Battle-tested tools and frameworks I use to architect resilient automation infrastructure:
+      </p>
+
+      <div class="tooling-grid">
+        <div class="tooling-category">
+          <div class="tooling-title">Orchestration & Workflows</div>
+          <div class="tag-cloud">
+            <span class="tech-tag">n8n</span>
+            <span class="tech-tag">Zapier</span>
+            <span class="tech-tag">Webhooks</span>
+            <span class="tech-tag">Custom Schedulers</span>
+          </div>
+        </div>
+
+        <div class="tooling-category">
+          <div class="tooling-title">Languages & APIs</div>
+          <div class="tag-cloud">
+            <span class="tech-tag">TypeScript</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">JSON Schema</span>
+          </div>
+        </div>
+
+        <div class="tooling-category">
+          <div class="tooling-title">AI & Reasoning</div>
+          <div class="tag-cloud">
+            <span class="tech-tag">Anthropic Claude API</span>
+            <span class="tech-tag">OpenAI API</span>
+            <span class="tech-tag">Structured Outputs</span>
+            <span class="tech-tag">Coding Agents</span>
+          </div>
+        </div>
+
+        <div class="tooling-category">
+          <div class="tooling-title">Data & Infrastructure</div>
+          <div class="tag-cloud">
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Redis Cache</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">GitHub Actions</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. Consulting & "How I Work"
+       ======================================================================== -->
+  <section id="consulting" class="reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">Advisory & Implementation</div>
+      <h2>Operations Consulting for Small Businesses</h2>
+      <p>
+        Helping businesses eliminate manual administrative bottlenecks without adding headcount or fragile black-box software.
+      </p>
+
+      <div class="consulting-grid">
+        <!-- Sprint 1 -->
+        <div class="consulting-card">
+          <div>
+            <span class="scope-badge">Sprint 1 // 1–2 Weeks</span>
+            <h3 class="scope-title">Operations & Automation Audit</h3>
+            <p class="scope-desc">
+              A deep forensic review of your team's manual handoffs, data leakage, and fragile scripts. We identify your highest-ROI automation opportunities and single points of failure.
+            </p>
+            <ul class="scope-deliverables">
+              <li>Complete workflow & bottleneck map</li>
+              <li>Automation feasibility & ROI score</li>
+              <li>Step-by-step implementation blueprint</li>
+              <li>Tool stack recommendation & cost audit</li>
+            </ul>
+          </div>
+          <button data-cal-namespace="30min" data-cal-link="daniel-harrington/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-secondary">
+            <span>Schedule Audit Call</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+
+        <!-- Sprint 2 -->
+        <div class="consulting-card featured">
+          <div>
+            <span class="scope-badge">Sprint 2 // 2–3 Weeks</span>
+            <h3 class="scope-title">Resilient Pipeline Build</h3>
+            <p class="scope-desc">
+              End-to-end design, build, and hardening of production-grade workflows (n8n/APIs) with automated safety valves, error alerts, and human review fallbacks.
+            </p>
+            <ul class="scope-deliverables">
+              <li>Production n8n or custom pipeline setup</li>
+              <li>Deterministic safety valves & error catching</li>
+              <li>Live test suite & edge-case verification</li>
+              <li>Loom video walkthroughs & team handoff</li>
+            </ul>
+          </div>
+          <button data-cal-namespace="30min" data-cal-link="daniel-harrington/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-primary">
+            <span>Book Build Consultation</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Honest Commitments Panel -->
+      <div class="commitments-panel">
+        <div class="section-tag">Zero Fluff Commitment</div>
+        <h3>How I Work With Your Team</h3>
+        <div class="commitments-grid">
+          <div class="commitment-item">
+            <h4 class="commitment-title">1. Built to Fail Safely</h4>
+            <p class="commitment-desc">
+              Automations never guess with your money, customers, or data. If an edge case or corrupted payload occurs, deterministic safety valves safely hand off to a human.
+            </p>
+          </div>
+          <div class="commitment-item">
+            <h4 class="commitment-title">2. Full Client Ownership</h4>
+            <p class="commitment-desc">
+              Everything is built inside your own accounts (n8n, cloud, APIs). You own all the credentials, keys, and code. No vendor lock-in, ever.
+            </p>
+          </div>
+          <div class="commitment-item">
+            <h4 class="commitment-title">3. Documented & Walked Through</h4>
+            <p class="commitment-desc">
+              You won't be left with a mystery black box. Every system comes with clear architecture flow diagrams and video walkthroughs so your team actually understands it.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. Direct Contact Hub & Footer
+       ======================================================================== -->
+  <section id="contact" class="contact-section reveal-on-scroll">
+    <div class="container">
+      <div class="contact-card">
+        <div class="section-tag">Let's Connect</div>
+        <h2>Ready to build bulletproof systems?</h2>
+        <p>
+          Whether you're looking for a Senior Automation / Engine Ops specialist or want to streamline your small business operations, let's talk.
+        </p>
+
+        <div class="contact-actions">
+          <button data-cal-namespace="30min" data-cal-link="daniel-harrington/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-primary btn-lg">
+            <span>Book a 30-Min Call</span>
+            <span aria-hidden="true">↗</span>
+          </button>
+        </div>
+
+        <footer class="footer-bar">
+          <div>© 2026 Danny Harrington. Engineered with AI agents & deterministic human taste.</div>
+          <div class="footer-links">
+            <a href="https://github.com/harringtondanny" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Site Scripts -->
+  <script src="js/main.js?v=emerald1"></script>
+
+  <!-- Cal.com Floating Popup & Modal Embed (Alabaster Cobalt Themed) -->
+  <script type="text/javascript">
+    (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+    Cal("init", "30min", {origin:"https://app.cal.com"});
+    Cal.config = Cal.config || {};
+    Cal.config.forwardQueryParams = true;
+
+    Cal.ns["30min"]("floatingButton", {
+      "calLink": "daniel-harrington/30min",
+      "config": { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light" },
+      "buttonText": "Work with me",
+      "buttonColor": "#2563eb",
+      "buttonTextColor": "#ffffff"
+    }); 
+
+    Cal.ns["30min"]("ui", {
+      "theme": "light",
+      "cssVarsPerTheme": {
+        "light": { "cal-brand": "#2563eb" },
+        "dark": { "cal-brand": "#2563eb" }
+      },
+      "hideEventTypeDetails": false,
+      "layout": "month_view"
+    });
+  </script>
+</body>
+</html>
