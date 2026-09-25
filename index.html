@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Danny Harrington — Scalable Systems & Operations</title>
-  <meta name="description" content="Danny Harrington helps small teams build scalable systems, resilient workflows, and deterministic operations pipelines.">
+  <meta name="description" content="Danny Harrington helps small teams and independent businesses build scalable systems, resilient workflows, and deterministic operations pipelines.">
 
   <!-- Google Fonts: Fraunces, Plus Jakarta Sans, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Stylesheets (Cache-busted) -->
-  <link rel="stylesheet" href="css/variables.css?v=emerald1">
-  <link rel="stylesheet" href="css/base.css?v=emerald1">
-  <link rel="stylesheet" href="css/components.css?v=emerald1">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css?v=mono1">
+  <link rel="stylesheet" href="css/base.css?v=mono1">
+  <link rel="stylesheet" href="css/components.css?v=mono1">
 </head>
 <body>
 
@@ -33,23 +33,19 @@
 
       <nav>
         <ul class="nav-links">
-          <li><a href="#playbook" class="nav-link">Playbook</a></li>
           <li><a href="#systems" class="nav-link">Systems</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#playbook" class="nav-link">Playbook</a></li>
           <li><a href="#tooling" class="nav-link">Tooling</a></li>
           <li><a href="#consulting" class="nav-link">Consulting</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
-          <li>
-            <button id="theme-toggle-btn" class="theme-switcher-btn" title="Click to test alternative palettes">
-              🎨 Look: Alabaster Cobalt
-            </button>
-          </li>
         </ul>
       </nav>
     </div>
   </header>
 
   <!-- ========================================================================
-       2. Hero Section
+       2. Hero Section with Interactive "Chaos vs. Order" Lens
        ======================================================================== -->
   <section class="hero-section">
     <div class="container hero-layout">
@@ -58,16 +54,16 @@
       <div class="hero-badge-row">
         <div class="avatar-badge">
           <div class="avatar-icon-wrap" aria-hidden="true">⚡</div>
-          <span class="avatar-label">Danny Harrington // Systems & Automation</span>
+          <span class="avatar-label">Danny Harrington // Technical Operator & Systems Engineer</span>
         </div>
       </div>
 
       <h1 class="hero-title">
-        I help small teams build <em>scalable systems</em>.
+        I tame operational chaos with <em>deterministic systems</em>.
       </h1>
 
       <p class="hero-lead">
-        I design resilient workflows, deterministic safety valves, and production-grade automations for growing businesses. Turning manual operational chaos into systems you can trust.
+        I help small teams and independent business owners eliminate manual busywork, fragile spreadsheets, and silent software failures. Turning unpredictable manual handoffs into resilient pipelines you can trust.
       </p>
 
       <div class="hero-actions">
@@ -75,33 +71,82 @@
           <span>View Production Systems</span>
           <span aria-hidden="true">↓</span>
         </a>
+        <a href="#about" class="btn btn-secondary">
+          <span>Meet Danny</span>
+          <span aria-hidden="true">→</span>
+        </a>
         <button data-cal-namespace="30min" data-cal-link="daniel-harrington/30min" data-cal-config='{"layout":"month_view"}' class="btn btn-secondary">
           <span>Book a 30-Min Call</span>
           <span aria-hidden="true">↗</span>
         </button>
       </div>
 
-      <!-- Operational Reliability Benchmarks -->
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-value">0%</div>
-          <div class="metric-label">Silent Failures</div>
-          <div class="metric-note">100% exceptions caught in dead-letter queues</div>
+      <!-- "Chaos vs. Order" Interactive Lens Component -->
+      <div class="chaos-order-lens-wrap">
+        <div class="lens-intro-bar">
+          <span>// REAL-TIME SYSTEMS COMPARISON</span>
+          <span class="lens-hint"><span>↔</span> Move cursor or drag across to reveal deterministic order</span>
         </div>
-        <div class="metric-card">
-          <div class="metric-value">&lt; 400ms</div>
-          <div class="metric-label">Decision Latency</div>
-          <div class="metric-note">Deterministic rule gate evaluation</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">100%</div>
-          <div class="metric-label">Idempotent</div>
-          <div class="metric-note">Zero duplicate transaction risk</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">Safe-First</div>
-          <div class="metric-label">Human-in-the-Loop</div>
-          <div class="metric-note">Deterministic threshold routing</div>
+
+        <div id="chaos-order-lens" class="chaos-order-lens" style="--clip-pos: 50%;">
+          
+          <!-- Left Pane: Fragile Manual Chaos -->
+          <div class="lens-pane lens-pane-chaos">
+            <div>
+              <span class="pane-badge-chaos">⚠️ The Fragile Small-Biz Stack</span>
+              <h3 class="chaos-headline">Silent Failures & Manual Panic</h3>
+              <div class="chaos-cards-grid">
+                <div class="chaos-card-item">
+                  <div class="chaos-card-label"><span>✕</span> Broken Formula</div>
+                  <p class="chaos-card-desc">Spreadsheet returns #REF! during batch invoicing. Unnoticed for 3 days.</p>
+                </div>
+                <div class="chaos-card-item">
+                  <div class="chaos-card-label"><span>✕</span> Webhook Race Condition</div>
+                  <p class="chaos-card-desc">Payment retry double-charges customer due to missing idempotency lock.</p>
+                </div>
+                <div class="chaos-card-item">
+                  <div class="chaos-card-label"><span>✕</span> Hallucinating AI Agent</div>
+                  <p class="chaos-card-desc">LLM parses $14,200 as $1,420 with zero deterministic safety gate.</p>
+                </div>
+              </div>
+            </div>
+            <div class="metric-note" style="color: #f87171; font-family: var(--font-mono);">
+              High cognitive friction • Fragile duct-tape scripts • Constant firefighting
+            </div>
+          </div>
+
+          <!-- Right Pane: Danny's Deterministic Order (Revealed via Clip Path) -->
+          <div class="lens-pane lens-pane-order">
+            <div>
+              <span class="pane-badge-order">⚡ Danny's Engineered Rails</span>
+              <h3 class="order-headline">Quiet, <em>Deterministic</em> Resiliency</h3>
+              <div class="order-cards-grid">
+                <div class="order-card-item">
+                  <div class="order-card-label"><span>✓</span> 4-Stage Safety Valve Gate</div>
+                  <p class="order-card-desc">Data Guard + Partner Flag + Tiered Variance checks before any execution.</p>
+                </div>
+                <div class="order-card-item">
+                  <div class="order-card-label"><span>✓</span> Atomic Idempotency Lock</div>
+                  <p class="order-card-desc">Distributed cache key prevents duplicate runs even under network retry storms.</p>
+                </div>
+                <div class="order-card-item">
+                  <div class="order-card-label"><span>✓</span> Human-in-the-Loop Fallback</div>
+                  <p class="order-card-desc">Anomalous or unvetted payloads route safely to human review with logs.</p>
+                </div>
+              </div>
+            </div>
+            <div class="metric-note" style="color: var(--color-accent); font-family: var(--font-mono);">
+              0% silent drops • 100% auditable JSON trails • Sleep-well-at-night stability
+            </div>
+          </div>
+
+          <!-- Interactive Divider Line & Handle -->
+          <div class="lens-divider-line">
+            <div class="lens-handle" aria-label="Interactive comparison slider handle">
+              <div class="lens-handle-arrows">‹ ›</div>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -109,66 +154,68 @@
   </section>
 
   <!-- ========================================================================
-       3. The Operations Playbook (4 Core Disciplines)
+       3. "Meet the Operator" Narrative Section (Personal Story & Tenets)
        ======================================================================== -->
-  <section id="playbook" class="reveal-on-scroll">
+  <section id="about" class="operator-section reveal-on-scroll">
     <div class="container">
-      <div class="section-tag">Methodology</div>
-      <h2>The Operations Playbook</h2>
-      <p>
-        AI agents are only as reliable as the deterministic rails surrounding them. Here are the four operational principles I build into every production system:
-      </p>
-
-      <div class="playbook-grid">
-        <div class="playbook-card">
-          <div>
-            <div class="card-num">01 // INTEGRITY</div>
-            <h3 class="card-heading">Data Quality Gates & Safety Valves</h3>
-            <p class="card-body">
-              Input guards, variance tolerances, and automatic human-in-the-loop escalation. An automated system should never guess with customer money or critical data.
-            </p>
+      <div class="operator-grid">
+        
+        <!-- Left Sidebar: Operator Badge -->
+        <div class="operator-sidebar">
+          <div class="operator-portrait-card">
+            <div class="operator-avatar-frame">
+              <span>⚡</span>
+            </div>
+            <h3 class="operator-name">Danny Harrington</h3>
+            <div class="operator-role">Technical Operator & Systems Architect</div>
+            <ul class="operator-specs-list">
+              <li><span class="spec-label">Discipline</span> <span>Engine Ops & Resilient Automations</span></li>
+              <li><span class="spec-label">Stack</span> <span>TypeScript, n8n, Python, AI APIs</span></li>
+              <li><span class="spec-label">Philosophy</span> <span>Deterministic & Fail-Safe</span></li>
+              <li><span class="spec-label">Availability</span> <span style="color: var(--color-accent);">Direct Engagements</span></li>
+            </ul>
           </div>
-          <div class="card-principle">Rule: Fail safely to human review.</div>
         </div>
 
-        <div class="playbook-card">
-          <div>
-            <div class="card-num">02 // RESILIENCE</div>
-            <h3 class="card-heading">Idempotency & Webhook Safeguards</h3>
-            <p class="card-body">
-              Ensuring network retries and re-delivered webhooks execute safely without duplicate billing, phantom records, or split-state race conditions.
-            </p>
+        <!-- Right Content: Personal Narrative & Tenets -->
+        <div class="operator-content">
+          <div class="section-tag">About Danny</div>
+          <h2>Engineering craft for real-world business operations.</h2>
+          
+          <blockquote class="operator-manifesto-quote">
+            "I believe small teams shouldn't need a 20-person DevOps department just to have dependable software. The best systems are quiet, deterministic, and fail safely when nobody is watching."
+          </blockquote>
+
+          <p class="operator-body-text">
+            I started engineering systems after seeing how much time, mental energy, and money growing businesses lose to fragile duct-tape workflows. A founder spends half their week babysitting spreadsheet syncs, or an operations team lives in fear that an automated script will mischarge a client or lose an order.
+          </p>
+
+          <p class="operator-body-text">
+            My approach isn't about selling generic B2B SaaS software or over-engineering bloated microservices. It's about sitting down with your team's real operational bottlenecks, designing deterministic safety valves, and building clean, robust pipelines directly inside <em>your own accounts</em>.
+          </p>
+
+          <div class="operator-tenets-grid">
+            <div class="operator-tenet-card">
+              <div class="operator-tenet-title"><span class="tenet-icon">◆</span> Calm Over Chaos</div>
+              <p class="operator-tenet-desc">No fragile no-code loops that break silently in the middle of the night.</p>
+            </div>
+            <div class="operator-tenet-card">
+              <div class="operator-tenet-title"><span class="tenet-icon">◆</span> Guardrails on AI</div>
+              <p class="operator-tenet-desc">AI handles data parsing and OCR; deterministic code gates evaluate the money decisions.</p>
+            </div>
+            <div class="operator-tenet-card">
+              <div class="operator-tenet-title"><span class="tenet-icon">◆</span> 100% Client Ownership</div>
+              <p class="operator-tenet-desc">Everything runs in your accounts. You own all keys, code, and documentation.</p>
+            </div>
           </div>
-          <div class="card-principle">Rule: Same input = identical safe outcome.</div>
         </div>
 
-        <div class="playbook-card">
-          <div>
-            <div class="card-num">03 // RELIABILITY</div>
-            <h3 class="card-heading">Error Handling & Dead-Letter Queues</h3>
-            <p class="card-body">
-              Graceful degradation, exponential backoff on flaky upstream APIs, and dedicated dead-letter queues (DLQs) so no payload is ever lost in the dark.
-            </p>
-          </div>
-          <div class="card-principle">Rule: Zero unhandled silent drops.</div>
-        </div>
-
-        <div class="playbook-card">
-          <div>
-            <div class="card-num">04 // VISIBILITY</div>
-            <h3 class="card-heading">Observability & Reasoning Audit Trails</h3>
-            <p class="card-body">
-              Structured JSON logging that captures raw inputs, agent reasoning steps, and downstream responses. Every automated decision is auditable after the fact.
-            </p>
-          </div>
-          <div class="card-principle">Rule: If you can't explain it, don't run it.</div>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================================
-       4. Production Systems & Case Studies
+       4. Production Systems & Case Studies (with Personal Field Notes)
        ======================================================================== -->
   <section id="systems" class="reveal-on-scroll">
     <div class="container">
@@ -210,6 +257,17 @@
             </div>
           </div>
 
+          <!-- Personal Operator's Field Note -->
+          <div class="operator-field-note">
+            <div class="operator-field-note-header">
+              <span>⚡</span>
+              <span>Danny's Field Note // Why this matters</span>
+            </div>
+            <p class="operator-field-note-quote">
+              "Most teams wait until an unhandled $50k invoice slips through before thinking about safety valves. In energy and high-ticket transactions, AI agents are great at OCR parsing, but they cannot be allowed to make payment decisions alone. Deterministic rule gates cost a fraction of what an accounting anomaly costs your balance sheet."
+            </p>
+          </div>
+
           <!-- Semantic System Flow Diagram -->
           <div class="system-diagram">
             <div class="diagram-title">// Operational Flow: Guard-Flag-Calculate-Fallback (G-F-C-F)</div>
@@ -221,7 +279,7 @@
               <span class="diagram-arrow">→</span>
               <div class="diagram-node">
                 <div class="node-title">2. Data Guard</div>
-                <div class="node-sub">Missing/Neg Amount Check</div>
+                <div class="node-sub">Missing/Neg Check</div>
               </div>
               <span class="diagram-arrow">→</span>
               <div class="diagram-node">
@@ -296,6 +354,17 @@
             </div>
           </div>
 
+          <!-- Personal Operator's Field Note -->
+          <div class="operator-field-note">
+            <div class="operator-field-note-header">
+              <span>⚡</span>
+              <span>Danny's Field Note // The distributed systems reality</span>
+            </div>
+            <p class="operator-field-note-quote">
+              "Distributed networks are messy: timeouts happen, Stripe or upstream APIs retry, and naive webhooks trigger twice. Without atomic idempotency guards, you end up double-charging customers or corrupting CRM state. I build deduplication keys into every webhook handler from day one."
+            </p>
+          </div>
+
           <div class="code-container">
             <div class="code-header">
               <span>idempotency.ts // Deduplication Guard</span>
@@ -326,7 +395,66 @@
   </section>
 
   <!-- ========================================================================
-       5. Core Tooling Matrix
+       5. The Operations Playbook (4 Core Disciplines)
+       ======================================================================== -->
+  <section id="playbook" class="reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">Methodology</div>
+      <h2>The Operations Playbook</h2>
+      <p>
+        AI agents are only as reliable as the deterministic rails surrounding them. Here are the four operational principles I build into every system:
+      </p>
+
+      <div class="playbook-grid">
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">01 // INTEGRITY</div>
+            <h3 class="card-heading">Data Quality Gates & Safety Valves</h3>
+            <p class="card-body">
+              Input guards, variance tolerances, and automatic human-in-the-loop escalation. An automated system should never guess with customer money or critical data.
+            </p>
+          </div>
+          <div class="card-principle">Rule: Fail safely to human review.</div>
+        </div>
+
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">02 // RESILIENCE</div>
+            <h3 class="card-heading">Idempotency & Webhook Safeguards</h3>
+            <p class="card-body">
+              Ensuring network retries and re-delivered webhooks execute safely without duplicate billing, phantom records, or split-state race conditions.
+            </p>
+          </div>
+          <div class="card-principle">Rule: Same input = identical safe outcome.</div>
+        </div>
+
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">03 // RELIABILITY</div>
+            <h3 class="card-heading">Error Handling & Dead-Letter Queues</h3>
+            <p class="card-body">
+              Graceful degradation, exponential backoff on flaky upstream APIs, and dedicated dead-letter queues (DLQs) so no payload is ever lost in the dark.
+            </p>
+          </div>
+          <div class="card-principle">Rule: Zero unhandled silent drops.</div>
+        </div>
+
+        <div class="playbook-card">
+          <div>
+            <div class="card-num">04 // VISIBILITY</div>
+            <h3 class="card-heading">Observability & Reasoning Audit Trails</h3>
+            <p class="card-body">
+              Structured JSON logging that captures raw inputs, agent reasoning steps, and downstream responses. Every automated decision is auditable after the fact.
+            </p>
+          </div>
+          <div class="card-principle">Rule: If you can't explain it, don't run it.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       6. Core Tooling Matrix
        ======================================================================== -->
   <section id="tooling" class="reveal-on-scroll">
     <div class="container">
@@ -381,7 +509,7 @@
   </section>
 
   <!-- ========================================================================
-       6. Consulting & "How I Work"
+       7. Consulting & "How I Work"
        ======================================================================== -->
   <section id="consulting" class="reveal-on-scroll">
     <div class="container">
@@ -465,7 +593,7 @@
   </section>
 
   <!-- ========================================================================
-       7. Direct Contact Hub & Footer
+       8. Direct Contact Hub & Footer
        ======================================================================== -->
   <section id="contact" class="contact-section reveal-on-scroll">
     <div class="container">
@@ -494,10 +622,39 @@
     </div>
   </section>
 
-  <!-- Main Site Scripts -->
-  <script src="js/main.js?v=emerald1"></script>
+  <!-- ========================================================================
+       9. Persistent Floating Theme Toggle (Bottom Left with Sun/Moon)
+       ======================================================================== -->
+  <button id="theme-radial-toggle" class="theme-radial-toggle" aria-label="Toggle theme light/dark" title="Toggle theme light/dark">
+    <div class="theme-icon-wrap" aria-hidden="true">
+      <!-- Sun Icon -->
+      <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <!-- Moon Icon -->
+      <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </div>
+    <span class="theme-tooltip">Toggle Light / Dark Theme</span>
+  </button>
 
-  <!-- Cal.com Floating Popup & Modal Embed (Alabaster Cobalt Themed) -->
+  <!-- Radial Wave Animation Overlay & Halo -->
+  <div id="theme-radial-overlay" class="theme-radial-overlay" aria-hidden="true"></div>
+  <div id="theme-radial-halo" class="theme-radial-halo" aria-hidden="true"></div>
+
+  <!-- Main Site Scripts -->
+  <script src="js/main.js?v=radial2"></script>
+
+  <!-- Cal.com Floating Popup & Modal Embed -->
   <script type="text/javascript">
     (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "30min", {origin:"https://app.cal.com"});
@@ -506,17 +663,17 @@
 
     Cal.ns["30min"]("floatingButton", {
       "calLink": "daniel-harrington/30min",
-      "config": { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "light" },
+      "config": { "layout": "month_view", "useSlotsViewOnSmallScreen": "true", "theme": "dark" },
       "buttonText": "Work with me",
-      "buttonColor": "#2563eb",
-      "buttonTextColor": "#ffffff"
+      "buttonColor": "#ffffff",
+      "buttonTextColor": "#090a0c"
     }); 
 
     Cal.ns["30min"]("ui", {
-      "theme": "light",
+      "theme": "dark",
       "cssVarsPerTheme": {
-        "light": { "cal-brand": "#2563eb" },
-        "dark": { "cal-brand": "#2563eb" }
+        "light": { "cal-brand": "#0c0d0f" },
+        "dark": { "cal-brand": "#ffffff" }
       },
       "hideEventTypeDetails": false,
       "layout": "month_view"

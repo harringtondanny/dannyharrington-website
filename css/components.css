@@ -555,11 +555,11 @@
   color: var(--color-text-main);
 }
 
-.token-kw { color: #c4f042; }
-.token-type { color: #6ee7c4; }
-.token-str { color: #ffd166; }
-.token-prop { color: #f3eff7; }
-.token-comm { color: #60675f; font-style: italic; }
+.token-kw { color: #ffffff; font-weight: 600; }
+.token-type { color: #d4d4d8; }
+.token-str { color: #a1a1aa; }
+.token-prop { color: #f4f4f5; }
+.token-comm { color: #52525b; font-style: italic; }
 
 .case-study-footer {
   display: flex;
@@ -847,4 +847,623 @@
   .metrics-grid {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+/* --------------------------------------------------------------------------
+   11. Persistent Floating Sun/Moon Theme Switcher (Bottom-Left)
+   -------------------------------------------------------------------------- */
+.theme-radial-toggle {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 1px solid var(--border-medium);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9999;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  color: var(--color-accent);
+  outline: none;
+}
+
+.theme-radial-toggle:hover {
+  transform: scale(1.08) translateY(-2px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45), 0 0 18px var(--color-accent-glow);
+}
+
+.theme-radial-toggle:active {
+  transform: scale(0.96);
+}
+
+.theme-icon-wrap {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.theme-icon-sun,
+.theme-icon-moon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+/* In Dark Theme (default): Show Moon, Sun is rotated out */
+body:not(.theme-light) .theme-icon-moon {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+body:not(.theme-light) .theme-icon-sun {
+  opacity: 0;
+  transform: rotate(90deg) scale(0.4);
+}
+
+/* In Light Theme: Show Sun, Moon is rotated out */
+body.theme-light .theme-icon-sun {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+body.theme-light .theme-icon-moon {
+  opacity: 0;
+  transform: rotate(-90deg) scale(0.4);
+}
+
+.theme-tooltip {
+  position: absolute;
+  left: 62px;
+  white-space: nowrap;
+  background-color: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-radial-toggle:hover .theme-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* View Transition Styling for Radial Expand & Collapse */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
+  height: 100%;
+  overflow: clip;
+}
+
+/* When expanding to light: the NEW light view sits on top and expands outward from button */
+html.transition-expanding-to-light::view-transition-new(root) {
+  z-index: 9999 !important;
+}
+html.transition-expanding-to-light::view-transition-old(root) {
+  z-index: 1 !important;
+}
+
+/* When collapsing back to dark: the OLD light view sits on top and collapses INTO the button */
+html.transition-collapsing-to-dark::view-transition-old(root) {
+  z-index: 9999 !important;
+}
+html.transition-collapsing-to-dark::view-transition-new(root) {
+  z-index: 1 !important;
+}
+
+/* Glowing Circular Boundary Halo */
+.theme-radial-halo {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 3px solid var(--color-accent);
+  box-shadow: 0 0 28px var(--color-accent), inset 0 0 16px var(--color-accent);
+  z-index: 10001;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  margin-top: -25px;
+  margin-left: -25px;
+}
+
+/* Radial Overlay for Lightness/Darkness Wave (Fallback & Enhancement) */
+.theme-radial-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0;
+  background-color: #f7f6f2; /* Warm stone light fill */
+}
+
+.theme-radial-overlay.animating-to-light {
+  animation: radialExpandLight 0.65s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+.theme-radial-overlay.animating-to-dark {
+  animation: radialCollapseLight 0.65s cubic-bezier(0.2, 0, 0, 1) forwards;
+}
+
+@keyframes radialExpandLight {
+  0% {
+    clip-path: circle(25px at var(--origin-x, 49px) var(--origin-y, calc(100vh - 49px)));
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(160vmax at var(--origin-x, 49px) var(--origin-y, calc(100vh - 49px)));
+    opacity: 1;
+  }
+}
+
+@keyframes radialCollapseLight {
+  0% {
+    clip-path: circle(160vmax at var(--origin-x, 49px) var(--origin-y, calc(100vh - 49px)));
+    opacity: 1;
+  }
+  100% {
+    clip-path: circle(25px at var(--origin-x, 49px) var(--origin-y, calc(100vh - 49px)));
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   12. Hero Section: "Chaos vs. Order" Interactive Lens
+   -------------------------------------------------------------------------- */
+.chaos-order-lens-wrap {
+  margin-top: var(--space-8);
+  width: 100%;
+}
+
+.lens-intro-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-faint);
+}
+
+.lens-intro-bar .lens-hint {
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chaos-order-lens {
+  position: relative;
+  width: 100%;
+  min-height: 380px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-medium);
+  background-color: var(--color-surface);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  user-select: none;
+  cursor: ew-resize;
+  touch-action: pan-y;
+}
+
+/* Shared Stage Structure */
+.lens-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: clamp(1.25rem, 2.5vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Pane A: The Chaos Stage (Left / Background) */
+.lens-pane-chaos {
+  background: radial-gradient(circle at 15% 25%, rgba(239, 68, 68, 0.08) 0%, transparent 60%), #120e11;
+  color: #fca5a5;
+  z-index: 1;
+}
+
+body.theme-light .lens-pane-chaos {
+  background: radial-gradient(circle at 15% 25%, rgba(239, 68, 68, 0.05) 0%, transparent 60%), #fff5f5;
+  color: #991b1b;
+}
+
+.pane-badge-chaos {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #ef4444;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+.chaos-headline {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: #f87171;
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+body.theme-light .chaos-headline {
+  color: #b91c1c;
+}
+
+.chaos-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.chaos-card-item {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px dashed rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+}
+
+.chaos-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #ef4444;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.chaos-card-desc {
+  font-size: 0.825rem;
+  line-height: 1.4;
+  color: #fca5a5;
+  margin-bottom: 0;
+}
+
+body.theme-light .chaos-card-desc {
+  color: #7f1d1d;
+}
+
+/* Pane B: The Order Stage (Revealed via Clip-Path) */
+.lens-pane-order {
+  background: radial-gradient(circle at 85% 25%, var(--color-accent-subtle) 0%, transparent 60%), var(--color-surface);
+  color: var(--color-text-main);
+  z-index: 2;
+  clip-path: polygon(var(--clip-pos, 50%) 0, 100% 0, 100% 100%, var(--clip-pos, 50%) 100%);
+}
+
+.pane-badge-order {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--color-accent-subtle);
+  border: 1px solid var(--border-accent);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+.order-headline {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: var(--color-text-main);
+  margin-top: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.order-headline em {
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.order-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.order-card-item {
+  background: var(--color-surface-subtle);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  position: relative;
+  transition: border-color var(--transition-fast);
+}
+
+.order-card-item:hover {
+  border-color: var(--border-accent);
+}
+
+.order-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.order-card-desc {
+  font-size: 0.825rem;
+  line-height: 1.4;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* Interactive Divider Line & Handle */
+.lens-divider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--clip-pos, 50%);
+  width: 2px;
+  background: linear-gradient(180deg, transparent 0%, var(--color-accent) 20%, var(--color-accent) 80%, transparent 100%);
+  z-index: 10;
+  pointer-events: none;
+  box-shadow: 0 0 12px var(--color-accent);
+}
+
+.lens-handle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 14px var(--color-accent-glow), 0 4px 12px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  cursor: ew-resize;
+  pointer-events: auto;
+}
+
+.lens-handle-arrows {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   13. "Meet the Operator" Narrative Section
+   -------------------------------------------------------------------------- */
+.operator-section {
+  padding-top: var(--space-24);
+  padding-bottom: var(--space-20);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.operator-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.operator-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.operator-portrait-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.operator-avatar-frame {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto var(--space-4);
+  background: linear-gradient(135deg, var(--color-accent-subtle) 0%, var(--color-surface-subtle) 100%);
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 24px var(--color-accent-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  position: relative;
+}
+
+.operator-name {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  color: var(--color-text-main);
+  margin-bottom: var(--space-1);
+}
+
+.operator-role {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  margin-bottom: var(--space-4);
+}
+
+.operator-specs-list {
+  list-style: none;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  text-align: left;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.operator-specs-list li {
+  display: flex;
+  justify-content: space-between;
+}
+
+.operator-specs-list .spec-label {
+  color: var(--color-text-faint);
+}
+
+.operator-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.operator-manifesto-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  line-height: 1.45;
+  color: var(--color-text-main);
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-6);
+  margin-bottom: var(--space-4);
+  font-style: italic;
+}
+
+.operator-body-text {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  color: var(--color-text-muted);
+}
+
+.operator-tenets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.operator-tenet-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  transition: border-color var(--transition-fast);
+}
+
+.operator-tenet-card:hover {
+  border-color: var(--border-accent);
+}
+
+.operator-tenet-title {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-main);
+  margin-bottom: var(--space-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.operator-tenet-title .tenet-icon {
+  color: var(--color-accent);
+  font-size: 0.9rem;
+}
+
+.operator-tenet-desc {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   14. Personal Operator Notes Callouts (In Case Studies)
+   -------------------------------------------------------------------------- */
+.operator-field-note {
+  margin: var(--space-6) 0;
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--border-medium);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-4) var(--space-6);
+  position: relative;
+}
+
+.operator-field-note-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-2);
+}
+
+.operator-field-note-quote {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-main);
+  font-style: normal;
+  margin-bottom: 0;
+}
+
+@media (max-width: 900px) {
+  .operator-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+  .operator-sidebar {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
 }

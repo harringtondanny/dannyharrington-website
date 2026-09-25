@@ -1,14 +1,14 @@
 /* ==========================================================================
    DESIGN TOKENS & SYSTEM VARIABLES
    Danny Harrington — Scalable Systems & Operations
-   Theme: Architectural Alabaster & Cobalt (Elegant, Trustworthy, Modern)
+   Theme: Architectural Carbon & Paper Monochrome (Quiet Authority, Leica Craft)
    ========================================================================== */
 
 :root {
   /* ------------------------------------------------------------------------
      Typography Stacks
-     - Headings: Fraunces (warm, refined, editorial serif)
-     - Interface & Body: Plus Jakarta Sans (approachable, clear, modern sans)
+     - Headings: Fraunces (authoritative, high-craft editorial serif)
+     - Interface & Body: Plus Jakarta Sans (clean, modern architectural sans)
      - Technical & Schemas: JetBrains Mono (clean monospaced)
      ------------------------------------------------------------------------ */
   --font-serif: 'Fraunces', Georgia, serif;
@@ -27,36 +27,42 @@
   --text-5xl: clamp(2.75rem, 5.5vw, 4rem);       /* 44px - 64px */
 
   /* ------------------------------------------------------------------------
-     Active Palette 1 (Default): Architectural Alabaster & Cobalt
-     Warm, luminous, elegant, crisp slate contrast, deep cobalt blue accent
+     PRIMARY DEFAULT THEME: Architectural Carbon & Paper Monochrome
+     Deep matte carbon black, architectural graphite cards, razor silver lines
      ------------------------------------------------------------------------ */
-  --color-canvas: #f8f9fb;              /* Soft luminous alabaster */
-  --color-surface: #ffffff;             /* Crisp clean card surface */
-  --color-surface-hover: #f1f5f9;       /* Subtle card hover state */
-  --color-surface-subtle: #f1f4f8;      /* Recessed containers */
-  --color-header-bg: rgba(248, 249, 251, 0.85); /* Frosted header */
-  --color-grid-line: rgba(15, 23, 42, 0.035);   /* Architectural grid */
+  --color-canvas: #090a0c;              /* Deep matte carbon black */
+  --color-surface: #111216;             /* Elevated architectural graphite card */
+  --color-surface-hover: #17191e;       /* Subtle card hover state */
+  --color-surface-subtle: #0d0e11;      /* Recessed containers / code blocks */
+  --color-header-bg: rgba(9, 10, 12, 0.85); /* Frosted carbon header */
+  --color-grid-line: rgba(255, 255, 255, 0.025); /* Architectural hairline grid */
 
-  /* Text & Readability */
-  --color-text-main: #0f172a;           /* Deep slate navy (executive clarity) */
-  --color-text-muted: #475569;          /* Medium slate (calm readability) */
-  --color-text-faint: #94a3b8;          /* Hairline labels, subtle metadata */
+  /* Text & Readability (Crisp Gallery Paper White & Precision Grays) */
+  --color-text-main: #f7f7f8;           /* Crisp gallery paper white */
+  --color-text-muted: #8e9099;          /* Refined architectural gray */
+  --color-text-faint: #4e5058;          /* Subtle metadata / telemetry hairlines */
 
   /* Hairlines & Borders */
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-medium: rgba(15, 23, 42, 0.16);
-  --border-accent: rgba(37, 99, 235, 0.35);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.15);
+  --border-accent: rgba(255, 255, 255, 0.35); /* Pure architectural silver */
 
-  /* Signature Accent: Royal Cobalt Blue */
-  --color-accent: #2563eb;              /* Elegant cobalt */
-  --color-accent-hover: #1d4ed8;        /* Deep cobalt hover */
-  --color-accent-subtle: rgba(37, 99, 235, 0.08); /* Translucent pill background */
-  --color-accent-glow: rgba(37, 99, 235, 0.18);   /* Subtle focus ring */
+  /* Signature Accent: Pure Architectural Stark White / Silver */
+  --color-accent: #ffffff;              /* Pure stark white highlight */
+  --color-accent-hover: #e2e4ea;        /* Soft platinum hover */
+  --color-accent-subtle: rgba(255, 255, 255, 0.08); /* Translucent pill background */
+  --color-accent-glow: rgba(255, 255, 255, 0.15);   /* Crisp ambient silver glow */
 
   /* Operational Signals & Buttons */
-  --color-status-live: #2563eb;         /* Available / live status */
-  --color-tag-bg: rgba(37, 99, 235, 0.05);
-  --btn-primary-text: #ffffff;          /* White text on primary button */
+  --color-status-live: #ffffff;         /* Crisp live pulse */
+  --color-tag-bg: rgba(255, 255, 255, 0.06);
+  --btn-primary-text: #090a0c;          /* Deep carbon black text on solid stark white button */
+
+  /* Lens Specific Tokens */
+  --color-chaos-bg: #140d10;
+  --color-chaos-border: rgba(244, 63, 94, 0.28);
+  --color-chaos-accent: #f43f5e;
+  --color-chaos-text: #fda4af;
 
   /* ------------------------------------------------------------------------
      Layout, Spacing & Elevation Tokens
@@ -78,10 +84,10 @@
   --radius-lg: 16px;
   --radius-pill: 9999px;
 
-  /* Restrained, Elegant Shadows */
-  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-card: 0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.03);
-  --shadow-card-hover: 0 12px 28px -4px rgba(15, 23, 42, 0.1), 0 0 0 1px var(--border-accent);
+  /* Restrained, Heavy-Duty Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 4px 24px -2px rgba(0, 0, 0, 0.7), 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-card-hover: 0 14px 40px -4px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--border-accent);
 
   /* Transitions */
   --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -90,126 +96,40 @@
 }
 
 /* --------------------------------------------------------------------------
-   Testing Palette 2: Warm Stone & Deep French Navy
-   (Preview by toggling class 'theme-warm-navy' on <body>)
+   LIGHT MODE COUNTERPART: Architectural Gallery Paper & Jet Black
+   (Triggered by class 'theme-light' on <body>)
    -------------------------------------------------------------------------- */
-body.theme-warm-navy {
-  --color-canvas: #f5f4ef;
-  --color-surface: #ffffff;
-  --color-surface-hover: #eeebe3;
-  --color-surface-subtle: #edeae2;
-  --color-header-bg: rgba(245, 244, 239, 0.85);
-  --color-grid-line: rgba(28, 25, 23, 0.03);
-  --color-text-main: #1c1917;
-  --color-text-muted: #57534e;
-  --color-text-faint: #a8a29e;
-  --border-subtle: rgba(28, 25, 23, 0.08);
-  --border-medium: rgba(28, 25, 23, 0.16);
-  --border-accent: rgba(30, 58, 138, 0.35);
-  --color-accent: #1e3a8a;
-  --color-accent-hover: #172554;
-  --color-accent-subtle: rgba(30, 58, 138, 0.08);
-  --color-accent-glow: rgba(30, 58, 138, 0.18);
-  --color-status-live: #1e3a8a;
-  --btn-primary-text: #ffffff;
-}
+body.theme-light {
+  --color-canvas: #f8f8f7;              /* Architectural gallery paper */
+  --color-surface: #ffffff;             /* Pure crisp white card surface */
+  --color-surface-hover: #f0f0ee;       /* Subtle card hover state */
+  --color-surface-subtle: #eaeae7;      /* Recessed containers */
+  --color-header-bg: rgba(248, 248, 247, 0.85); /* Frosted paper header */
+  --color-grid-line: rgba(0, 0, 0, 0.03); /* Fine architectural grid */
 
-/* --------------------------------------------------------------------------
-   Testing Palette 3: Clean White & Mediterranean Azure
-   (Preview by toggling class 'theme-azure' on <body>)
-   -------------------------------------------------------------------------- */
-body.theme-azure {
-  --color-canvas: #f0f4f8;
-  --color-surface: #ffffff;
-  --color-surface-hover: #e6edf4;
-  --color-surface-subtle: #e8f0f8;
-  --color-header-bg: rgba(240, 244, 248, 0.85);
-  --color-grid-line: rgba(11, 25, 44, 0.035);
-  --color-text-main: #0b192c;
-  --color-text-muted: #415a77;
-  --color-text-faint: #778da9;
-  --border-subtle: rgba(11, 25, 44, 0.08);
-  --border-medium: rgba(11, 25, 44, 0.16);
-  --border-accent: rgba(2, 132, 199, 0.35);
-  --color-accent: #0284c7;
-  --color-accent-hover: #0369a1;
-  --color-accent-subtle: rgba(2, 132, 199, 0.08);
-  --color-accent-glow: rgba(2, 132, 199, 0.18);
-  --color-status-live: #0284c7;
-  --btn-primary-text: #ffffff;
-}
+  --color-text-main: #0c0d0f;           /* Pure jet black */
+  --color-text-muted: #585a62;          /* Architectural graphite */
+  --color-text-faint: #92949c;          /* Muted metadata */
 
-/* --------------------------------------------------------------------------
-   Testing Palette 4: Alabaster & Alpine Emerald (Rich, Elegant Green)
-   (Preview by toggling class 'theme-emerald' on <body>)
-   -------------------------------------------------------------------------- */
-body.theme-emerald {
-  --color-canvas: #f8f9fb;
-  --color-surface: #ffffff;
-  --color-surface-hover: #f0fdf4;
-  --color-surface-subtle: #f0fdf4;
-  --color-header-bg: rgba(248, 249, 251, 0.85);
-  --color-grid-line: rgba(15, 23, 42, 0.035);
-  --color-text-main: #0f172a;
-  --color-text-muted: #475569;
-  --color-text-faint: #94a3b8;
-  --border-subtle: rgba(15, 23, 42, 0.08);
-  --border-medium: rgba(15, 23, 42, 0.16);
-  --border-accent: rgba(5, 150, 105, 0.35);
-  --color-accent: #059669;              /* Deep Alpine Emerald */
-  --color-accent-hover: #047857;
-  --color-accent-subtle: rgba(5, 150, 105, 0.08);
-  --color-accent-glow: rgba(5, 150, 105, 0.2);
-  --color-status-live: #059669;
-  --btn-primary-text: #ffffff;
-}
+  --border-subtle: rgba(12, 13, 15, 0.09);
+  --border-medium: rgba(12, 13, 15, 0.16);
+  --border-accent: rgba(12, 13, 15, 0.45);
 
-/* --------------------------------------------------------------------------
-   Testing Palette 5: Warm Stone & Botanical Sage (Understated Organic Green)
-   (Preview by toggling class 'theme-sage' on <body>)
-   -------------------------------------------------------------------------- */
-body.theme-sage {
-  --color-canvas: #f5f4ef;
-  --color-surface: #ffffff;
-  --color-surface-hover: #f3f5f2;
-  --color-surface-subtle: #edf1ec;
-  --color-header-bg: rgba(245, 244, 239, 0.85);
-  --color-grid-line: rgba(28, 25, 23, 0.03);
-  --color-text-main: #1c1917;
-  --color-text-muted: #57534e;
-  --color-text-faint: #a8a29e;
-  --border-subtle: rgba(28, 25, 23, 0.08);
-  --border-medium: rgba(28, 25, 23, 0.16);
-  --border-accent: rgba(45, 106, 79, 0.35);
-  --color-accent: #2d6a4f;              /* Deep Botanical Sage */
-  --color-accent-hover: #1b4332;
-  --color-accent-subtle: rgba(45, 106, 79, 0.08);
-  --color-accent-glow: rgba(45, 106, 79, 0.2);
-  --color-status-live: #2d6a4f;
-  --btn-primary-text: #ffffff;
-}
+  --color-accent: #0c0d0f;              /* Deep jet black accent */
+  --color-accent-hover: #26282f;
+  --color-accent-subtle: rgba(12, 13, 15, 0.07);
+  --color-accent-glow: rgba(12, 13, 15, 0.15);
 
-/* --------------------------------------------------------------------------
-   Testing Palette 6: Midnight Slate & Cobalt (For dark mode comparison)
-   (Preview by toggling class 'theme-dark-cobalt' on <body>)
-   -------------------------------------------------------------------------- */
-body.theme-dark-cobalt {
-  --color-canvas: #0f141c;
-  --color-surface: #161d28;
-  --color-surface-hover: #1f2837;
-  --color-surface-subtle: #0b0f15;
-  --color-header-bg: rgba(15, 20, 28, 0.85);
-  --color-grid-line: rgba(240, 244, 248, 0.02);
-  --color-text-main: #f0f4f8;
-  --color-text-muted: #8493a8;
-  --color-text-faint: #4e5a6c;
-  --border-subtle: rgba(240, 244, 248, 0.08);
-  --border-medium: rgba(240, 244, 248, 0.16);
-  --border-accent: rgba(59, 130, 246, 0.35);
-  --color-accent: #3b82f6;
-  --color-accent-hover: #60a5fa;
-  --color-accent-subtle: rgba(59, 130, 246, 0.12);
-  --color-accent-glow: rgba(59, 130, 246, 0.25);
-  --color-status-live: #3b82f6;
-  --btn-primary-text: #0f141c;
+  --color-status-live: #0c0d0f;
+  --color-tag-bg: rgba(12, 13, 15, 0.05);
+  --btn-primary-text: #ffffff;          /* White text on solid black button */
+
+  --color-chaos-bg: #fff5f5;
+  --color-chaos-border: rgba(220, 38, 38, 0.2);
+  --color-chaos-accent: #dc2626;
+  --color-chaos-text: #991b1b;
+
+  --shadow-sm: 0 1px 2px rgba(12, 13, 15, 0.04);
+  --shadow-card: 0 4px 18px -2px rgba(12, 13, 15, 0.06), 0 1px 3px rgba(12, 13, 15, 0.03);
+  --shadow-card-hover: 0 12px 30px -4px rgba(12, 13, 15, 0.12), 0 0 0 1px var(--border-accent);
 }
